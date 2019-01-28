@@ -35,7 +35,7 @@ Get-NetIPConfiguration
 
 # Change the server IP address
 New-NetIPAddress -InterfaceAlias Ethernet -IPAddress 172.16.0.15 -PrefixLength 16
-Remove-NetIPAddress -InterfaceAlias Ethernet -IPAddress 172.16.0.11
+Remove-NetIPAddress -InterfaceAlias Ethernet -IPAddress 172.16.0.11 -Confirm:$false
 
 # Change the DNS settings and default gateway for the server
 Set-DnsClientServerAddress -InterfaceAlias Ethernet -ServerAddress 172.16.0.12
