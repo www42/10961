@@ -8,7 +8,7 @@ $logPath | Get-Member
 $logFile = "log.txt"
 $logPath += $logFile
 $logPath
-$logPath.Replace("C:","D:")
+$logPath.Replace("C:", "D:")
 $today = Get-Date
 $today.GetType()
 $today | Get-Member
@@ -19,13 +19,34 @@ Get-ADUser -Properties LastLogonDate -Filter {LastLogonDate -gt $cutOffDate}
 
 #endregion
 
-#region Arrays
+#region Using Arrays
 
 $mktgUsers = Get-ADUser -Filter {Department -eq "Marketing"} -Properties Department
 $mktgUsers.Count
+$mktgUsers[0]
 $mktgUsers | Set-ADUser -Department "Business Development"
 
 Get-ADUser -Filter {Department -eq "Marketing"}
 Get-ADUser -Filter {Department -eq "Business Development"}
+
+[System.Collections.ArrayList]$computers = "LON-SRV1", "LON-SRV2", "LON-DC1"
+$computers.IsFixedSize
+$computers.Add("LON-DC2")
+$computers.Remove("LON-SRV2")
+$computers
+
+#endregion
+
+#region Using Hash Tables
+$mailList = @{"Frank" = "Frank@fabriakm.com"; `
+              "Libby" = "LHayward@contso.com"; `
+              "Matej" = "MSTaojanov@tailspintoys.com"}
+
+$mailList
+$mailList.Libby
+$mailList.Libby = "Libby.Hayward@contoso.com"
+$mailList.Add("Stela", "Stela.Sahiti")
+$mailList.Remove("Frank")
+$mailList
 
 #endregion
