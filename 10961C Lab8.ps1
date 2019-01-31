@@ -25,18 +25,18 @@ Set-ExecutionPolicy Unrestricted -Force
 
 New-ADGroup -Name IPPhoneTest -GroupScope Universal -GroupCategory Security
 Move-ADObject "CN=IPPhoneTest,CN=Users,DC=Adatum,DC=com" -TargetPath "OU=IT,DC=Adatum,DC=com"
-Add-ADGroupMember IPPhoneTest -Members Abbi,Ida,Parsa,Tonia
+Add-ADGroupMember IPPhoneTest -Members Abbi, Ida, Parsa, Tonia
 
 $users = Get-ADGroupMember IPPhoneTest
 
 ForEach ($u in $users) {
     $fullUser = Get-ADUser $u
     $ipPhone = $fullUser.GivenName + "." + $fullUser.Surname + "@adatum.com"
-    Set-ADUser $fullUser -replace @{ipPhone="$ipPhone"}
+    Set-ADUser $fullUser -replace @{ipPhone = "$ipPhone"}
 }
 
-Get-ADUser -Identity Abbi -Properties ipPhone | ft Name,ipPhone
-Get-ADUser -Identity Beth -Properties ipPhone | ft Name,ipPhone
+Get-ADUser -Identity Abbi -Properties ipPhone | ft Name, ipPhone
+Get-ADUser -Identity Beth -Properties ipPhone | ft Name, ipPhone
 
 
 #endregion
@@ -45,16 +45,34 @@ Get-ADUser -Identity Beth -Properties ipPhone | ft Name,ipPhone
 
 Set-Location E:\Mod08\Labfiles
 New-Item services.txt -ItemType File
-Get-Service "Print Spooler" | % Name | Out-File .\services.txt -Append
-Get-Service "Windows Time" | % Name | Out-File .\services.txt -Append
+Get-Service "Print Spooler" | Select -ExpandProperty Name | Out-File .\services.txt -Append
+Get-Service "Windows Time" | Select -ExpandProperty Name | Out-File .\services.txt -Append
 cat .\services.txt
 
 $Services = Get-Content .\services.txt
+foreach ($s in $Services) {
+    $status = (Get-Service $s).Status
+    if ($status -ne "Running") {
+        Start-Service $s
+        Write-Host "Started $s"
+    }
+    else {
+        Write-Host "$s is already started"
+    }
+}
 
 #endregion
 
 #region Creating a Random Password
 
+$passwordLength = 8
+$password = $null
+for ($i = 0; $i -le $passwordLength; $i++) {
+    $number = Get-Random -Minimum 65 -Maximum 90
+    $letter = [char]$number
+    $password += $letter
+}
+Write-Output "The password is: $password"
 
 #endregion
 
