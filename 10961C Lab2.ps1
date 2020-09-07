@@ -9,12 +9,12 @@
 New-ADOrganizationalUnit -Name London
 
 # Create group for branch office administrators
-New-ADGroup "London Admins" -GroupScope Global
+New-ADGroup -Name "London Admins" -GroupScope Global
 
 # Create a user and computer account for the branch office
 New-ADUser -Name Ty -DisplayName "Ty Carlson"
-Add-ADGroupMember “London Admins” -Members Ty
-New-ADComputer LON-CL2
+Add-ADGroupMember -Identity "London Admins" -Members Ty
+New-ADComputer -Name LON-CL2
 
 # Move the group, user, and computer accounts to the branch office OU
 Move-ADObject -Identity "CN=London Admins,CN=Users,DC=Adatum,DC=com" -TargetPath "OU=London,DC=Adatum,DC=com"
@@ -44,6 +44,10 @@ New-NetRoute -InterfaceAlias Ethernet -DestinationPrefix 0.0.0.0/0 -NextHop 172.
 
 # Verify and test the changes
 Get-NetIPConfiguration
+
+# Test the network connection again
+Test-Connection LON-DC1
+
 
 
 # Exercise 3: Creating a website
