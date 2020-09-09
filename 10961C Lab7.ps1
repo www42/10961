@@ -9,12 +9,14 @@ $logFile = "log.txt"
 $logPath += $logFile
 $logPath
 $logPath.Replace("C:", "D:")
+$logPath = $logPath.Replace("C:", "D:")
+$logPath
+
 $today = Get-Date
 $today.GetType()
 $today | Get-Member
 $logFile = [string]$today.Year + "-" + $today.Month + "-" + $today.Day + "-" + $today.Hour + "-" + $today.Minute + ".txt"
 $cutOffDate = $today.AddDays(-30)
-
 Get-ADUser -Properties LastLogonDate -Filter {LastLogonDate -gt $cutOffDate}
 
 #endregion
@@ -22,10 +24,10 @@ Get-ADUser -Properties LastLogonDate -Filter {LastLogonDate -gt $cutOffDate}
 #region Using Arrays
 
 $mktgUsers = Get-ADUser -Filter {Department -eq "Marketing"} -Properties Department
-$mktgUsers.Count
-$mktgUsers[0]
+$mktgUsers.Count                                            # 52
+$mktgUsers[0]                                               # Lizzie Terrell
 $mktgUsers | Set-ADUser -Department "Business Development"
-
+$mktgUsers | Format-Table Name,Department
 Get-ADUser -Filter {Department -eq "Marketing"}
 Get-ADUser -Filter {Department -eq "Business Development"}
 
