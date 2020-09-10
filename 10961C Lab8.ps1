@@ -78,5 +78,13 @@ Write-Output "The password is: $password"
 
 #region Creating Users Based on a CSV File
 
+$users = Import-Csv -Path users.csv
+ForEach ($u in $users) {
+    $path = "OU=" + $u.Department + ",DC=Adatum,DC=com"
+    $upn = $u.UserID + "@adatum.com"
+    $display = $u.First + " " + $u.Last
+    Write-Host "Creating $display in $path"
+    New-ADUser -GivenName $u.First -Surname $u.Last -Name $display -DisplayName $display -SamAccountName $u.UserID -UserPrincipalName $UPN -Path $path -Department $u.Department
+}
 
 #endregion
