@@ -78,4 +78,33 @@ Get-ADUser -Filter * -Properties Department,City | where {$_.Department -eq 'IT'
 Get-ADUser -Filter * -Properties Department,City,Office | where {$_.Department -eq 'IT' -and $_.City -eq 'London'} |
    select Name,Department,City,Office | sort Name
 
+
+help ConvertTo-Html –ShowWindow
+
+Get-ADUser -Filter * -Properties Department,City,Office |
+   Where {$_.Department -eq 'IT' -and $_.City -eq 'London'} |
+   Sort Name |
+   Select-Object -Property Name,Department,City,Office |
+   ConvertTo-Html –Property Name,Department,City -PreContent Users |
+   Out-File E:\UserReport.html
+
+Invoke-Expression E:\UserReport.html
+
+Get-ADUser -Filter * -Properties Department,City,Office |
+   Where {$_.Department -eq 'IT' -and $PSItem.City -eq 'London'} |
+   Sort Name |
+   Select-Object -Property Name,Department,City,Office |
+   Export-Clixml E:\UserReport.xml
+
+# IE  E:\UserReport.xml
+
+Get-ADUser -Filter * -Properties Department,City,Office |
+   Where {$_.Department -eq 'IT' -and $PSItem.City -eq 'London'} |
+   Sort Name |
+   Select-Object -Property Name,Department,City,Office |
+   Export-Csv E:\UserReport.csv
+
+# Notepad E:\UserReport.csv
+
+
 #endregion
