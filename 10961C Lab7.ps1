@@ -28,8 +28,8 @@ $mktgUsers.Count                                            # 52
 $mktgUsers[0]                                               # Lizzie Terrell
 $mktgUsers | Set-ADUser -Department "Business Development"
 $mktgUsers | Format-Table Name,Department
-Get-ADUser -Filter {Department -eq "Marketing"}
-Get-ADUser -Filter {Department -eq "Business Development"}
+Get-ADUser -Filter {Department -eq "Marketing"}             # Niemand mehr
+Get-ADUser -Filter {Department -eq "Business Development"}  # die 52
 
 [System.Collections.ArrayList]$computers = "LON-SRV1", "LON-SRV2", "LON-DC1"
 $computers.IsFixedSize
