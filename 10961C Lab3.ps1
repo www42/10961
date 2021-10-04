@@ -1,9 +1,9 @@
 ﻿# 10961 C Module 03
 # ==================
 
-# ---------------------------------------------
-# Lab A:Selecting, Sorting, and Displaying Data
-# ---------------------------------------------
+# ----------------------------------------------
+# Lab A: Selecting, Sorting, and Displaying Data
+# ----------------------------------------------
 # 1. Sign in to LON-CL1
 # 2. Open PowerShell as Administrator
 # 3. List Commands Containing 'Date'
