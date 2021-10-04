@@ -1,6 +1,8 @@
-﻿# Exercise 1: Creating and managing Active Directory objects
-# ----------------------------------------------------------
+﻿# 10961 C Module 02
+# ==================
 
+# Exercise 1: Creating and managing Active Directory objects
+# ----------------------------------------------------------
 # 1. Sign in to LON-CL1
 # 2. Open PowerShell as Administrator
 # 3. Create OU Named London
@@ -32,7 +34,6 @@ Move-ADObject -Identity "CN=LON-CL2,CN=Computers,DC=Adatum,DC=com" -TargetPath "
 
 # Exercise 2: Configuring network settings on Windows Server
 # ----------------------------------------------------------
-
 # 1. Switch to LON-SVR1
 # 2. Activate Windows Sign In
 # 3. Sign in to LON-SVR1
@@ -69,7 +70,6 @@ Test-Connection LON-DC1
 
 # Exercise 3: Creating a website
 # ------------------------------
-
 # 1. Install IIS on LON-SVR1
 Install-WindowsFeature Web-Server
 
