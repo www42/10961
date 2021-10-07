@@ -13,13 +13,14 @@
 # 4. Find Syntax to Query Logical Disk Information
 # 5. Create Script Named QueryDisk.ps1
 New-Item -ItemType File -Path E:\Mod09\QueryDisk.ps1
+psEdit E:\Mod09\QueryDisk.ps1
 
 # 6. Add Parameter for Computer Name
 param(
     [string]$ComputerName=(Read-Host "Enter computer name")
     )
     
-    Get-CimInstance Win32_LogicalDisk -ComputerName $ComputerName -Filter "DriveType=3"
+Get-CimInstance Win32_LogicalDisk -ComputerName $ComputerName -Filter "DriveType=3"
     
 # 7. Confirm Script Queries Disk Information
 E:\Mod09\QueryDisk.ps1
@@ -103,6 +104,7 @@ Get-Help E:\Mod09\QueryDisk.ps1
 # 1. Note About this Exercise
 # 2. Create Script Named LogFunction.ps1
 New-Item -ItemType File -Path E:\Mod09\LogFunction.ps1
+psEdit E:\Mod09\LogFunction.ps1
 
 # 3. Create Function Named Write-Log
 function Write-Log {}
