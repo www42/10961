@@ -12,7 +12,7 @@ configuration web
         WindowsFeature www
         {
            Ensure = "Present"
-           Name   = "Feature Name"
+           Name   = "web-server"
         }       
     }
 }
