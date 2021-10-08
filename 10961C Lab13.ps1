@@ -17,6 +17,8 @@ configuration web
     }
 }
 web
+dir .\web
+psEdit .\web\LON-SVR1.mof
 
 # Push configuration
 Start-DscConfiguration -Wait -Verbose -Path .\web
@@ -42,7 +44,7 @@ Invoke-WebRequest -Uri $psscUrl -OutFile $psscFile
 
 # Rgister endpoint
 $configurationName = 'adatum.windows.iismanagement'
-Register-PSSessionConfiguration -Name $configurationName
+Register-PSSessionConfiguration -Name $configurationName -Path $psscFile
 
 
 # LON-CL1
