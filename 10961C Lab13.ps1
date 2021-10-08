@@ -1,5 +1,31 @@
-# Lab JEA
-# --------
+# ------------
+# Exercise DSC
+# ------------
+#
+# LON-CL1
+# -------
+# Create DSC configuration 'web'
+configuration web
+{
+    node ("LON-SVR1")
+    {
+        WindowsFeature www
+        {
+           Ensure = "Present"
+           Name   = "Feature Name"
+        }       
+    }
+}
+web
+
+# Push configuration
+Start-DscConfiguration -Wait -Verbose -Path .\web
+
+
+
+# ------------
+# Exercise JEA
+# ------------
 #
 # LON-SVR1
 # --------
