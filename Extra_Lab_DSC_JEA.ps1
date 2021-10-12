@@ -1,3 +1,6 @@
+
+# Use LODS Course 10961C Lab Module 08 (Basic Scripting) for this extra lab
+
 # ------------
 # Exercise DSC
 # ------------
