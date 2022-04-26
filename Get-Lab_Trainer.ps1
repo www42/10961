@@ -20,3 +20,6 @@ function Get-Lab {
 }
 Get-Lab
 zoomit64
+  
+#Invoke-WebRequest -Uri https://store2a7pkhklifuxe.blob.core.windows.net/downloads/MicrosoftEdgeEnterpriseX64.msi -OutFile "$env:TEMP\MicrosoftEdgeEnterpriseX64.msi"
+#Start-Process msiexec.exe -ArgumentList "/i $env:TEMP\MicrosoftEdgeEnterpriseX86.msi /qn /norestart"
